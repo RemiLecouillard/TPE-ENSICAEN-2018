@@ -3,6 +3,6 @@ project(TPE-ENSICAEN-2018 C)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(include)
+include_directories(include CCollections/include)
 
 add_executable(helloWolrd src/main/helloWorld.c)
