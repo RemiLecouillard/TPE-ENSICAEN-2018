@@ -9,7 +9,7 @@ CFLAGS = -W -Wall -ansi -pedantic -fPIC
 ROOT = ../../
 SRCDIR =
 OBJDIR = $(ROOT)obj/
-LIB = $(ROOT)lib
+LIB = $(ROOT)lib/
 SRC  = $(wildcard $(SRCDIR)*.c)
 OBJ  = $(SRC:$(SRCDIR)%.c=$(OBJDIR)%.o)
 LIBSTAT = $(LIB)libimage64.a
@@ -29,7 +29,7 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 $(LIBSTAT):
 	#@$(CC) -shared -o $@ $(OBJDIR)image.o
 	@ar rcs $(LIBSTAT) $(OBJDIR)image.o
-	@echo "Library $(CFILE)libimage64.a generated"
+	@echo "Library $(CFILE)libimage64.a$(CNONE) generated"
 
 clean:
 	rm -rf $(OBJDIR)/*.o *~

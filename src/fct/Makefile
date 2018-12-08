@@ -21,7 +21,7 @@ CFILE = \033[0;34m
 all: $(OBJ)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
-	@$(CC) -o $@ -c $< -I $(ROOT)include/ $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(ROOT)include/ $(ROOT)CCollections/include $(CFLAGS)
 	@echo "$(CFILE)$(@:$(OBJDIR)%=%)$(CNONE) from $(CFILE)$<$(CNONE)"
 
 clean:
