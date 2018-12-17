@@ -4,7 +4,7 @@
 #DIRECTORIES
 SRCDIR = src/
 MAINDIR = main
-SUBDIR = $(addprefix $(SRCDIR), fct image)
+SUBDIR = $(addprefix $(SRCDIR), histogram set image)
 
 #COLORS
 CDIR = \033[0;36m

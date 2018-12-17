@@ -31,11 +31,11 @@ all: $(EXEC) $(TESTMOMENTS) $(TESTLIST) $(TESTRAG) $(TESTREG)
 
 $(EXEC): $(OBJDIRMAIN)$(EXEC).o $(OTHOBJ)
 	@if [ ! -d $(ROOT)bin ]; then mkdir $(ROOT)bin;fi
-	@$(CC) $^ -I $(ROOT)include/image -o $(BINDIR)$@.out $(LIBS) $(LDFLAGS)
+	@$(CC) $^ -I $(ROOT)include/image -I $(ROOT)CCollections/include -o $(BINDIR)$@.out $(LIBS) $(LDFLAGS)
 	@echo  "\t$(CEXEC)$(EXEC).out$(CNONE) Compiled in $(CDIR)$(BINDIR:$(ROOT)%=%)$(CNONE)"
 
 $(OBJDIRMAIN)%.o: %.c
-	@$(CC) -o $@ -I $(ROOT)include/ -c $< $(CFLAGS)
+	@$(CC) -o $@ -I $(ROOT)include/ -I $(ROOT)CCollections/include/ -c $< $(CFLAGS)
 	@echo "$(CFILE)$(@:$(OBJDIRMAIN)%=%)$(CNONE) from $(CFILE)$<$(CNONE)"
 
 clean:
