@@ -19,7 +19,7 @@ OBJ  = $(SRC:%.c=$(OBJDIR)%.o)
 OTHOBJ = $(wildcard $(OBJDIR)*.o)
 
 #MAIN'S SOURCES
-EXEC = helloWorld
+EXEC = ppmhist
 
 #DISPLAY
 CEXEC = \033[0;32m
