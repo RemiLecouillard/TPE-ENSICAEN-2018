@@ -3,7 +3,7 @@
 //
 
 #include "histogram/color.h"
-#include "set/colorTree.h"
+#include "set/histogram.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -27,7 +27,7 @@ struct node {
     Node sons[2][2][2];
 };
 
-struct colorTree {
+struct histogram {
     Node root;
 };
 
@@ -40,14 +40,14 @@ int nodeIteration(Node this, Color color);
 Color nodeNearestColor(Node this, Color color);
 
 
-ColorTree newColorTree() {
-    ColorTree tree;
-    tree = malloc(sizeof(struct colorTree));
+Histogram newHistogram() {
+    Histogram tree;
+    tree = malloc(sizeof(struct histogram));
     tree->root = NULL;
     return tree;
 }
 
-void colorTreeAdd(ColorTree this, Color color) {
+void histogramAdd(Histogram this, Color color) {
 
     if (!_root) {
         _root = newNode(color);
@@ -57,11 +57,11 @@ void colorTreeAdd(ColorTree this, Color color) {
 
 }
 
-int colorTreeGetIteration(ColorTree this, Color color) {
+int histogramGetIteration(Histogram this, Color color) {
     return nodeIteration(_root, color);
 }
 
-Color colorTreeGiveNearestColor(ColorTree this, Color color) {
+Color histogramGiveNearestColor(Histogram this, Color color) {
     return nodeNearestColor(_root, color);
 }
 
@@ -117,7 +117,7 @@ void display(Node this) {
     }
 }
 
-void colorTreeDisplay(ColorTree this) {
+void histogramDisplay(Histogram this) {
     display(_root);
 }
 

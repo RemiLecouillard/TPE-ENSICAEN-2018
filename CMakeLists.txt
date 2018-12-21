@@ -5,4 +5,4 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(include CCollections/include)
 
-add_executable(helloWolrd src/main/helloWorld.c include/histogram/color.h src/histogram/color.c src/set/colorTree.c include/set/colorTree.h)
+add_executable(helloWolrd src/main/helloWorld.c include/histogram/color.h src/histogram/color.c src/set/histogram.c include/set/histogram.h)

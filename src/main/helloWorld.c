@@ -8,27 +8,27 @@
  * or revised without written permission of the authors.
  */
 #include <stdio.h>
-#include <set/colorTree.h>
+#include <set/histogram.h>
 #include "image/image.h"
 
-ColorTree readImage(char* path) {
+Histogram readImage(char* path) {
     int* pixel;
     Color color;
-    ColorTree tree;
+    Histogram tree;
     image img;
 
 
     img = FAIRE_image();
     image_charger(img, path);
     image_debut(img);
-    tree = newColorTree();
+    tree = newHistogram();
 
     do {
         pixel = image_lire_pixel(img);
 
         color = createColor((unsigned char) pixel[0], (unsigned char) pixel[1], (unsigned char) pixel[2]);
 
-        colorTreeAdd(tree, color);
+        histogramAdd(tree, color);
     }while (image_pixel_suivant(img));
 
     printf("la\n");
@@ -40,14 +40,14 @@ ColorTree readImage(char* path) {
 }
 
 int main() {
-    ColorTree tree;
+    Histogram tree;
     printf("reading image.. \n");
     tree = readImage("img/fille.ppm");
 
     printf("displaying colors...\n");
-    colorTreeDisplay(tree);
+    histogramDisplay(tree);
 
-    Color c = colorTreeGiveNearestColor(tree, createColor(242, 248, 247));
+    Color c = histogramGiveNearestColor(tree, createColor(242, 248, 247));
 
     printf(" %d %d %d\n", c.r, c.g, c.b);
 

@@ -10,34 +10,34 @@
 /**
  *
  */
-typedef struct colorTree *ColorTree;
+typedef struct histogram *Histogram;
 
 /**
  *
  * @return
  */
-ColorTree newColorTree();
+Histogram newHistogram();
 
 /**
- * Adds a color to the tree. Increments its iteration by 1 if already in it.
- * @param tree
+ * Adds a color to the histogram. Increments its iteration by 1 if already in it.
+ * @param this
  * @param color
  */
-void colorTreeAdd(ColorTree this, Color color);
+void histogramAdd(Histogram this, Color color);
 
 /**
  * Gives the number of iteration of the color in the tree.
- * @param tree
+ * @param this
  * @param color
  * @return The number of iteration
  */
-int colorTreeGetIteration(ColorTree this, Color color);
+int histogramGetIteration(Histogram this, Color color);
 
 /**
  * Displayes the elements
  * @param this
  */
-void colorTreeDisplay(ColorTree this);
+void histogramDisplay(Histogram this);
 
 /**
  *
@@ -45,7 +45,7 @@ void colorTreeDisplay(ColorTree this);
  * @param color
  * @return
  */
-Color colorTreeGiveNearestColor(ColorTree this, Color color);
+Color histogramGiveNearestColor(Histogram this, Color color);
 
 
 #endif //TPE_ENSICAEN_2018_COLORTREE_H
