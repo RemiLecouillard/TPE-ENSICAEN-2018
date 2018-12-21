@@ -84,6 +84,11 @@ Color nodeNearestColor(Node this, Color color);
  */
 void nodeDisplay(Node this);
 
+/**
+ * Removes the node from the memory along with its sons.
+ * @param this
+ */
+void nodeDeletes(Node this);
 
 Histogram newHistogram() {
     Histogram tree;
@@ -200,4 +205,24 @@ Color nodeNearestColor(Node this, Color color) {
     } else {
         return nodeNearestColor(_sons[r][g][b], color);
     }
+}
+
+void histogramDelete(Histogram this) {
+    nodeDeletes(_root);
+    free(this);
+}
+
+void nodeDeletes(Node this) {
+    int i,j,k;
+
+    for (i = 0; i < 2; i ++) {
+        for (j = 0; j < 2; j ++) {
+            for (k = 0; k < 2; k ++) {
+                if (_sons[i][j][k] != NULL) {
+                    nodeDeletes(_sons[i][j][k]);
+                }
+            }
+        }
+    }
+    free(this);
 }

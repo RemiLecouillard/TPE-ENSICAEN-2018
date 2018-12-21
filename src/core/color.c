@@ -9,7 +9,7 @@
  */
 #include <stdlib.h>
 #include <stdio.h>
-#include "histogram/color.h"
+#include "core/color.h"
 
 Color createColor(unsigned char r, unsigned char g, unsigned char b) {
     Color c;
@@ -35,8 +35,6 @@ int colorEquales(Color *c1, Color *c2) {
     return a->b == b->b && a->g == b->g && a->r == b->r;
 }
 
-void colorDisplay(Color color) {
-    Color c;
-    c = *(Color*)color;
+void colorDisplay(Color c) {
     printf("r: %d g: %d b: %d", c.r, c.g, c.b);
 }

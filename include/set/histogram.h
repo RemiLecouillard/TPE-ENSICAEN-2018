@@ -53,5 +53,10 @@ void histogramDisplay(Histogram this);
  */
 Color histogramGiveNearestColor(Histogram this, Color color);
 
+/**
+ * Free the histogram from the memory.
+ * @param this
+ */
+void histogramDelete(Histogram this);
 
 #endif //TPE_ENSICAEN_2018_COLORTREE_H

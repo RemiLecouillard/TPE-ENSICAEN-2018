@@ -51,6 +51,6 @@ int main() {
     Color c = histogramGiveNearestColor(tree, createColor(242, 248, 247));
 
     printf(" %d %d %d\n", c.r, c.g, c.b);
-
+    histogramDelete(tree);
     return 0;
 }
