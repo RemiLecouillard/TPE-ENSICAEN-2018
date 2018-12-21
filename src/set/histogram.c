@@ -18,8 +18,15 @@
 #define _iter this->iteration
 #define _sons this->sons
 
+/**
+ * A pointer of the structure node.
+ */
 typedef struct node *Node;
 
+/**
+ * A node of the tree set histogram.
+ * Contains a color, its number of iterations and its sons.
+ */
 struct node {
     Color color;
     int iteration;
@@ -33,17 +40,49 @@ struct node {
     Node sons[2][2][2];
 };
 
+/**
+ * A tree set containing colors.
+ */
 struct histogram {
     Node root;
 };
 
+/**
+ * Malloc a new Node with the given color.
+ * Giving it 1 iteration.
+ * @param color
+ * @return
+ */
 Node newNode(Color color);
 
+/**
+ * Adds an iteration of the given color. If not present in the tree create a new Node.
+ * @param this
+ * @param color
+ */
 void addColor(Node this, Color color);
 
+/**
+ * Gives the number of iteration of the given color.
+ * @param this
+ * @param color
+ * @return the number of iteration.
+ */
 int nodeIteration(Node this, Color color);
 
+/**
+ * Gives the nearest color in the tree.
+ * @param this
+ * @param color
+ * @return The nearest color.
+ */
 Color nodeNearestColor(Node this, Color color);
+
+/**
+ * Displays the color of the node with its iterations, along with all its sons.
+ * @param this
+ */
+void nodeDisplay(Node this);
 
 
 Histogram newHistogram() {
@@ -106,7 +145,7 @@ void addColor(Node this, Color color) {
     }
 }
 
-void display(Node this) {
+void nodeDisplay(Node this) {
     int i,j, k;
 
     if (!this) {
@@ -117,14 +156,14 @@ void display(Node this) {
     for (i = 0; i < 2; i ++) {
         for (j = 0; j < 2; j ++) {
             for (k = 0; k < 2; k ++) {
-                display(_sons[i][j][k]);
+                nodeDisplay(_sons[i][j][k]);
             }
         }
     }
 }
 
 void histogramDisplay(Histogram this) {
-    display(_root);
+    nodeDisplay(_root);
 }
 
 int nodeIteration(Node this, Color color) {
