@@ -61,6 +61,13 @@ Color histogramGiveNearestColor(Histogram this, Color color);
 int histogramGetNumberOfPixels(Histogram this);
 
 /**
+ * Gives the number of differents colors in the histogram.
+ * @param this
+ * @return
+ */
+int histogramGetNumberOfColors(Histogram this);
+
+/**
  * Free the histogram from the memory.
  * @param this
  */

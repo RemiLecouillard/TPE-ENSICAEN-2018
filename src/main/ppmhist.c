@@ -31,7 +31,9 @@ int main(int argc, char *argv[]) {
 
     printf("\nImage successfully parsed.\n"
            "Took %lf s to perform.\n"
-           "%d pixels in the image.\n", ((float)end - start) / CLOCKS_PER_SEC, histogramGetNumberOfPixels(tree));
+           "%d pixels in the image.\n"
+           "%d differents colors in the image.\n", ((float)end - start) / CLOCKS_PER_SEC,
+           histogramGetNumberOfPixels(tree), histogramGetNumberOfColors(tree));
 
     histogramDelete(tree);
 

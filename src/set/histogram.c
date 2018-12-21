@@ -18,6 +18,7 @@
 #define _iter this->iteration
 #define _sons this->sons
 #define _pixels this->numberOfPixels
+#define _nbColors this->numberOfColors
 
 /**
  * A pointer of the structure node.
@@ -62,8 +63,9 @@ Node newNode(Color color);
  * Adds an iteration of the given color. If not present in the tree create a new Node.
  * @param this
  * @param color
+ * @return 1 if a color had been added. 0 otherwise.
  */
-void addColor(Node this, Color color);
+int addColor(Node this, Color color);
 
 /**
  * Gives the number of iteration of the given color.
@@ -108,7 +110,7 @@ void histogramAdd(Histogram this, Color color) {
         _root = newNode(color);
     }
 
-    addColor(_root, color);
+    _nbColors += addColor(_root, color);
 
     _pixels++;
 
@@ -139,11 +141,12 @@ Node newNode(Color color) {
     return this;
 }
 
-void addColor(Node this, Color color) {
+int addColor(Node this, Color color) {
     int r,g,b;
 
     if (colorEquales(&_color, &color)) {
         _iter++;
+        return 0;
     } else {
         r = color.r > _color.r;
         g = color.g > _color.g;
@@ -151,8 +154,9 @@ void addColor(Node this, Color color) {
 
         if (!_sons[r][g][b]) {
             _sons[r][g][b] = newNode(color);
+            return 1;
         } else {
-            addColor(_sons[r][g][b], color);
+            return addColor(_sons[r][g][b], color);
         }
     }
 }
@@ -222,6 +226,10 @@ int histogramGetNumberOfPixels(Histogram this) {
 void histogramDelete(Histogram this) {
     nodeDeletes(_root);
     free(this);
+}
+
+int histogramGetNumberOfColors(Histogram this) {
+    return _nbColors;
 }
 
 void nodeDeletes(Node this) {
