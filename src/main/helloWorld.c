@@ -8,12 +8,8 @@
  * or revised without written permission of the authors.
  */
 #include <stdio.h>
-#include <PriorityQueue.h>
-#include <LinkedList.h>
 #include <set/colorTree.h>
 #include "image/image.h"
-#include "histogram/color.h"
-
 
 ColorTree readImage(char* path) {
     int* pixel;

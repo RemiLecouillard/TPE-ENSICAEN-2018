@@ -4,7 +4,8 @@
 
 #include "histogram/color.h"
 #include "set/colorTree.h"
-#include <ArrayList.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define _root this->root
 #define _color this->color
