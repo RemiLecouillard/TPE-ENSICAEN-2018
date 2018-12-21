@@ -29,9 +29,11 @@ int main(int argc, char *argv[]) {
 
     histogramDisplay(tree);
 
+    printf("\nImage successfully parsed.\n"
+           "Took %lf s to perform.\n"
+           "%d pixels in the image.\n", ((float)end - start) / CLOCKS_PER_SEC, histogramGetNumberOfPixels(tree));
+
     histogramDelete(tree);
 
-    printf("\nImage successfully parsed.\n"
-           "Took %lf s to perform.\n", ((float)end - start) / CLOCKS_PER_SEC);
     return 0;
 }

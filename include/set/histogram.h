@@ -54,6 +54,13 @@ void histogramDisplay(Histogram this);
 Color histogramGiveNearestColor(Histogram this, Color color);
 
 /**
+ * Gives the number of pixels.
+ * @param this
+ * @return
+ */
+int histogramGetNumberOfPixels(Histogram this);
+
+/**
  * Free the histogram from the memory.
  * @param this
  */

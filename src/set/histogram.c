@@ -17,6 +17,7 @@
 #define _color this->color
 #define _iter this->iteration
 #define _sons this->sons
+#define _pixels this->numberOfPixels
 
 /**
  * A pointer of the structure node.
@@ -44,6 +45,8 @@ struct node {
  * A tree set containing colors.
  */
 struct histogram {
+    int numberOfPixels;
+    int numberOfColors;
     Node root;
 };
 
@@ -94,6 +97,8 @@ Histogram newHistogram() {
     Histogram tree;
     tree = malloc(sizeof(struct histogram));
     tree->root = NULL;
+    tree->numberOfPixels = 0;
+    tree->numberOfColors = 0;
     return tree;
 }
 
@@ -104,6 +109,8 @@ void histogramAdd(Histogram this, Color color) {
     }
 
     addColor(_root, color);
+
+    _pixels++;
 
 }
 
@@ -205,6 +212,10 @@ Color nodeNearestColor(Node this, Color color) {
     } else {
         return nodeNearestColor(_sons[r][g][b], color);
     }
+}
+
+int histogramGetNumberOfPixels(Histogram this) {
+    return _pixels;
 }
 
 void histogramDelete(Histogram this) {
