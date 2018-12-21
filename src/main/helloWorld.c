@@ -9,6 +9,7 @@
  */
 #include <stdio.h>
 #include <set/histogram.h>
+#include <core/color.h>
 #include "image/image.h"
 
 Histogram readImage(char* path) {

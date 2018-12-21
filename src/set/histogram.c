@@ -8,7 +8,7 @@
  * or revised without written permission of the authors.
  */
 
-#include "histogram/color.h"
+#include "core/color.h"
 #include "set/histogram.h"
 #include <stdio.h>
 #include <stdlib.h>
