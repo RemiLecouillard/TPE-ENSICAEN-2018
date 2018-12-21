@@ -36,6 +36,8 @@ void addColor(Node this, Color color);
 
 int nodeIteration(Node this, Color color);
 
+Color nodeNearestColor(Node this, Color color);
+
 
 ColorTree newColorTree() {
     ColorTree tree;
@@ -56,6 +58,10 @@ void colorTreeAdd(ColorTree this, Color color) {
 
 int colorTreeGetIteration(ColorTree this, Color color) {
     return nodeIteration(_root, color);
+}
+
+Color colorTreeGiveNearestColor(ColorTree this, Color color) {
+    return nodeNearestColor(_root, color);
 }
 
 Node newNode(Color color) {
@@ -129,5 +135,23 @@ int nodeIteration(Node this, Color color) {
         return 0;
     } else {
         return nodeIteration(_sons[r][g][b], color);
+    }
+}
+
+Color nodeNearestColor(Node this, Color color) {
+    int r,g,b;
+
+    if (colorEquales(&_color, &color)) {
+        return _color;
+    }
+
+    r = color.r > _color.r;
+    g = color.g > _color.g;
+    b = color.b > _color.b;
+
+    if (!_sons[r][g][b]) {
+        return _color;
+    } else {
+        return nodeNearestColor(_sons[r][g][b], color);
     }
 }

@@ -33,7 +33,19 @@ void colorTreeAdd(ColorTree this, Color color);
  */
 int colorTreeGetIteration(ColorTree this, Color color);
 
+/**
+ * Displayes the elements
+ * @param this
+ */
 void colorTreeDisplay(ColorTree this);
+
+/**
+ *
+ * @param this
+ * @param color
+ * @return
+ */
+Color colorTreeGiveNearestColor(ColorTree this, Color color);
 
 
 #endif //TPE_ENSICAEN_2018_COLORTREE_H

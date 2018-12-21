@@ -50,5 +50,10 @@ int main() {
 
     printf("displaying colors...\n");
     colorTreeDisplay(tree);
+
+    Color c = colorTreeGiveNearestColor(tree, createColor(242, 248, 247));
+
+    printf(" %d %d %d\n", c.r, c.g, c.b);
+
     return 0;
 }
