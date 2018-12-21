@@ -11,7 +11,7 @@
 #ifndef TPE_ENSICAEN_2018_COLORTREE_H
 #define TPE_ENSICAEN_2018_COLORTREE_H
 
-#include "histogram/color.h"
+#include "core/color.h"
 
 /**
  *
@@ -40,7 +40,7 @@ void histogramAdd(Histogram this, Color color);
 int histogramGetIteration(Histogram this, Color color);
 
 /**
- * Displayes the elements
+ * Displays the elements
  * @param this
  */
 void histogramDisplay(Histogram this);
