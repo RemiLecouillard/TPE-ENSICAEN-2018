@@ -164,7 +164,7 @@ void nodeDisplay(Node this) {
         return;
     }
 
-    printf("r %d g %d b %d iteration %d\n", _color.r, _color.g, _color.b, _iter);
+    printf("| %3d | %3d | %3d | %3d | %d\n", _color.r, _color.g, _color.b, (_color.b + _color.g + _color.r)/3, _iter);
     for (i = 0; i < 2; i ++) {
         for (j = 0; j < 2; j ++) {
             for (k = 0; k < 2; k ++) {
@@ -175,6 +175,7 @@ void nodeDisplay(Node this) {
 }
 
 void histogramDisplay(Histogram this) {
+    printf("|  r  |  g  |  b  | lum | Iteration(s)\n");
     nodeDisplay(_root);
 }
 
