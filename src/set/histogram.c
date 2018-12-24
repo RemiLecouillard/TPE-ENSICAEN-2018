@@ -12,6 +12,7 @@
 #include "set/histogram.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <Queue.h>
 
 #define _root this->root
 #define _color this->color
@@ -19,6 +20,8 @@
 #define _sons this->sons
 #define _pixels this->numberOfPixels
 #define _nbColors this->numberOfColors
+#define _current this->iterator.current
+#define _queue this->iterator.queue
 
 /**
  * A pointer of the structure node.
@@ -42,6 +45,11 @@ struct node {
     Node sons[2][2][2];
 };
 
+struct iterator {
+    Queue queue;
+    Node current;
+};
+
 /**
  * A tree set containing colors.
  */
@@ -49,6 +57,7 @@ struct histogram {
     int numberOfPixels;
     int numberOfColors;
     Node root;
+    struct iterator iterator;
 };
 
 /**
@@ -95,12 +104,21 @@ void nodeDisplay(Node this);
  */
 void nodeDeletes(Node this);
 
+/**
+ * Adds all the nodes to the queue.
+ * @param this
+ * @param queue
+ */
+void nodeAddToQueue(Node this, Queue queue);
+
 Histogram newHistogram() {
     Histogram tree;
     tree = malloc(sizeof(struct histogram));
     tree->root = NULL;
     tree->numberOfPixels = 0;
     tree->numberOfColors = 0;
+    tree->iterator.current = NULL;
+    tree->iterator.queue = NULL;
     return tree;
 }
 
@@ -245,4 +263,56 @@ void nodeDeletes(Node this) {
         }
     }
     free(this);
+}
+
+void nodeAddToQueue(Node this, Queue queue) {
+    int i,j,k;
+
+    QueueAdd(queue, this);
+
+    for (i = 0; i < 2; i ++) {
+        for (j = 0; j < 2; j ++) {
+            for (k = 0; k < 2; k ++) {
+                if (_sons[i][j][k] != NULL) {
+                    nodeAddToQueue(_sons[i][j][k], queue);
+                }
+            }
+        }
+    }
+}
+
+void histogramBegin(Histogram this) {
+    if (_queue) {
+        QueueDelete(_queue);
+    }
+    _queue = newQueue();
+    nodeAddToQueue(_root, _queue);
+}
+
+int histogramNext(Histogram this) {
+    if (!_queue) {
+        return 0;
+    }
+
+    _current = QueuePop(_queue);
+
+    if (!_current) {
+        /* If there's no elements left */
+        return 0;
+    }
+
+    return 1;
+}
+
+Color histogramCurrentColor(Histogram this) {
+    if (_current)
+        return _current->color;
+    /* Arbitrary color when there's no current element */
+    return createColor(0,0,0);
+}
+
+int histogramCurrentIteration(Histogram this) {
+    if (_current)
+        return _current->iteration;
+    return 0;
 }

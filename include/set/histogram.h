@@ -68,6 +68,33 @@ int histogramGetNumberOfPixels(Histogram this);
 int histogramGetNumberOfColors(Histogram this);
 
 /**
+ * Puts the iterator at the beginning.
+ * @param this
+ */
+void histogramBegin(Histogram this);
+
+/**
+ * Moves the iterator to the next element.
+ * @param this
+ * @return 0 if there's no more elements, 1 otherwise.
+ */
+int histogramNext(Histogram this);
+
+/**
+ * Gives the current Color of the iterator.
+ * @param this
+ * @return
+ */
+Color histogramCurrentColor(Histogram this);
+
+/**
+ * Gives the number of iteration of the current color of the iterator.
+ * @param this
+ * @return
+ */
+int histogramCurrentIteration(Histogram this);
+
+/**
  * Free the histogram from the memory.
  * @param this
  */
