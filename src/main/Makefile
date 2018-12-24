@@ -19,7 +19,8 @@ OBJ  = $(SRC:%.c=$(OBJDIR)%.o)
 OTHOBJ = $(wildcard $(OBJDIR)*.o)
 
 #MAIN'S SOURCES
-EXEC = ppmhist
+EXEC1 = mapping
+EXEC2 = ppmhist
 
 #DISPLAY
 CEXEC = \033[0;32m
@@ -27,12 +28,17 @@ CDIR = \033[0;36m
 CNONE = \033[0m
 CFILE = \033[0;34m
 
-all: $(EXEC) $(TESTMOMENTS) $(TESTLIST) $(TESTRAG) $(TESTREG)
+all: $(EXEC1) $(EXEC2)
 
-$(EXEC): $(OBJDIRMAIN)$(EXEC).o $(OTHOBJ)
+$(EXEC1): $(OBJDIRMAIN)$(EXEC1).o $(OTHOBJ)
 	@if [ ! -d $(ROOT)bin ]; then mkdir $(ROOT)bin;fi
 	@$(CC) $^ -I $(ROOT)include/image -I $(ROOT)CCollections/include -o $(BINDIR)$@.out $(LIBS) $(LDFLAGS)
-	@echo  "\t$(CEXEC)$(EXEC).out$(CNONE) Compiled in $(CDIR)$(BINDIR:$(ROOT)%=%)$(CNONE)"
+	@echo  "\t$(CEXEC)$(EXEC1).out$(CNONE) Compiled in $(CDIR)$(BINDIR:$(ROOT)%=%)$(CNONE)"
+
+$(EXEC2): $(OBJDIRMAIN)$(EXEC2).o $(OTHOBJ)
+	@if [ ! -d $(ROOT)bin ]; then mkdir $(ROOT)bin;fi
+	@$(CC) $^ -I $(ROOT)include/image -I $(ROOT)CCollections/include -o $(BINDIR)$@.out $(LIBS) $(LDFLAGS)
+	@echo  "\t$(CEXEC)$(EXEC2).out$(CNONE) Compiled in $(CDIR)$(BINDIR:$(ROOT)%=%)$(CNONE)"
 
 $(OBJDIRMAIN)%.o: %.c
 	@$(CC) -o $@ -I $(ROOT)include/ -I $(ROOT)CCollections/include/ -c $< $(CFLAGS)
