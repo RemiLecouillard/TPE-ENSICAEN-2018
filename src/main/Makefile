@@ -32,13 +32,13 @@ all: $(EXEC1) $(EXEC2)
 
 $(EXEC1): $(OBJDIRMAIN)$(EXEC1).o $(OTHOBJ)
 	@if [ ! -d $(ROOT)bin ]; then mkdir $(ROOT)bin;fi
-	@$(CC) $^ -I $(ROOT)include/image -I $(ROOT)CCollections/include -o $(BINDIR)$@.out $(LIBS) $(LDFLAGS)
-	@echo  "\t$(CEXEC)$(EXEC1).out$(CNONE) Compiled in $(CDIR)$(BINDIR:$(ROOT)%=%)$(CNONE)"
+	@$(CC) $^ -I $(ROOT)include/image -I $(ROOT)CCollections/include -o $(BINDIR)$@ $(LIBS) $(LDFLAGS)
+	@echo  "\t$(CEXEC)$(EXEC1)$(CNONE) Compiled in $(CDIR)$(BINDIR:$(ROOT)%=%)$(CNONE)"
 
 $(EXEC2): $(OBJDIRMAIN)$(EXEC2).o $(OTHOBJ)
 	@if [ ! -d $(ROOT)bin ]; then mkdir $(ROOT)bin;fi
-	@$(CC) $^ -I $(ROOT)include/image -I $(ROOT)CCollections/include -o $(BINDIR)$@.out $(LIBS) $(LDFLAGS)
-	@echo  "\t$(CEXEC)$(EXEC2).out$(CNONE) Compiled in $(CDIR)$(BINDIR:$(ROOT)%=%)$(CNONE)"
+	@$(CC) $^ -I $(ROOT)include/image -I $(ROOT)CCollections/include -o $(BINDIR)$@ $(LIBS) $(LDFLAGS)
+	@echo  "\t$(CEXEC)$(EXEC2)$(CNONE) Compiled in $(CDIR)$(BINDIR:$(ROOT)%=%)$(CNONE)"
 
 $(OBJDIRMAIN)%.o: %.c
 	@$(CC) -o $@ -I $(ROOT)include/ -I $(ROOT)CCollections/include/ -c $< $(CFLAGS)
