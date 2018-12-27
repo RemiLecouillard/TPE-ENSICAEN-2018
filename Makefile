@@ -16,6 +16,7 @@ all: lib/libCCollections.a
 	@(make -s -C $(SRCDIR)$(MAINDIR))
 
 lib/libCCollections.a :
+	@git submodule update --init
 	@make -s -C CCollections/
 	@mv CCollections/bin/libCCollections.a lib/libCCollections.a
 	@echo "Library $(CFILE)libCCollections.a$(CNONE) generated"
