@@ -10,4 +10,8 @@ The program includes a CMakeLists.txt but only for CLion's compatibilities.
 Please use `make` to compile the program.
 
 Make sure you have gcc installed. This program has been compiled under Ubuntu. It does not guarantee any compatibilities 
-with any other OS. Anyway, this program doesn't guarantee anything at all.That's just a student's project. What did you expect duh ? 
+with any other OS. Anyway, this program doesn't guarantee anything at all.That's just a student's project. What did you expect duh ?
+
+#LICENSE
+
+This program is under Apache License. See LICENSE file for more information.
