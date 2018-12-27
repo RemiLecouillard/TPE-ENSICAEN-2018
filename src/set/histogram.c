@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <Queue.h>
+#include <limits.h>
 
 #define _root this->root
 #define _color this->color
@@ -103,9 +104,10 @@ int nodeIteration(Node this, Color color);
  * Gives the nearest color in the tree.
  * @param this
  * @param color
+ * @param minDist
  * @return The nearest color.
  */
-Color nodeNearestColor(Node this, Color color);
+Color nodeNearestColor(Node this, Color color, int *minDist);
 
 /**
  * Displays the color of the node with its iterations, along with all its sons.
@@ -154,7 +156,9 @@ int histogramGetIteration(Histogram this, Color color) {
 }
 
 Color histogramGiveNearestColor(Histogram this, Color color) {
-    return nodeNearestColor(_root, color);
+    int minDist;
+    minDist = INT_MAX;
+    return nodeNearestColor(_root, color, &minDist);
 }
 
 Node newNode(Color color) {
@@ -234,8 +238,10 @@ int nodeIteration(Node this, Color color) {
     }
 }
 
-Color nodeNearestColor(Node this, Color color) {
+Color nodeNearestColor(Node this, Color color, int *minDist) {
     int r,g,b;
+    int dist;
+    Color near;
 
     if (colorEquals(&_color, &color)) {
         return _color;
@@ -244,11 +250,22 @@ Color nodeNearestColor(Node this, Color color) {
     r = color.r > _color.r;
     g = color.g > _color.g;
     b = color.b > _color.b;
+    dist = abs(color.r - _color.r) + abs(color.b - _color.b) + abs(color.g - _color.g);
+
+    if (*minDist > dist) {
+        *minDist = dist;
+    }
 
     if (!_sons[r][g][b]) {
         return _color;
     } else {
-        return nodeNearestColor(_sons[r][g][b], color);
+        near = nodeNearestColor(_sons[r][g][b], color, minDist);
+
+        if (*minDist < dist) {
+            return near;
+        }
+
+        return _color;
     }
 }
 
