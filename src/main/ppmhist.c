@@ -12,11 +12,15 @@
 #include <util.h>
 #include <core/algos.h>
 #include <time.h>
+#include <image/image.h>
 
 
 int main(int argc, char *argv[]) {
-    Histogram tree;
+    Histogram colors;
     clock_t start, end;
+    image input;
+
+    /* parameter's check up */
 
     if (argc < 2) {
         fprintf(stderr, "No image parameter specified\n");
@@ -24,18 +28,28 @@ int main(int argc, char *argv[]) {
     }
 
     start = clock();
-    tree = readImage(argv[1]);
+
+    input = FAIRE_image();
+
+    image_charger(input, argv[1]);
+
+    colors = readImage(input);
+
     end = clock();
 
-    histogramDisplay(tree);
+    histogramDisplay(colors);
 
     printf("\nImage successfully parsed.\n"
            "Took %lf s to perform.\n"
            "%d pixels in the image.\n"
            "%d differents colors in the image.\n", ((float)end - start) / CLOCKS_PER_SEC,
-           histogramGetNumberOfPixels(tree), histogramGetNumberOfColors(tree));
+           histogramGetNumberOfPixels(colors), histogramGetNumberOfColors(colors));
 
-    histogramDelete(tree);
+    /* freeing the memory */
+
+    DEFAIRE_image(input);
+
+    histogramDelete(colors);
 
     return 0;
 }

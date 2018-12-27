@@ -14,48 +14,59 @@
 #include <core/algos.h>
 #include <time.h>
 #include <set/sortedTree.h>
+#include <image/image.h>
 
 
 int main(int argc, char *argv[]) {
-    Histogram tree;
-    SortedTree sortedTree;
+    Histogram histogram;
+    SortedTree sortedColors;
     clock_t start, end;
+    image input, output;
     int k;
 
     start = clock();
-    if (argc < 2) {
+
+    /* parameter's check up */
+    if (argc < 3) {
         fprintf(stderr, "No image parameter specified\n");
         return 1;
     }
 
-    if (argc == 3) {
-        k = atoi(argv[2]);
+    if (argc == 4) {
+        k = atoi(argv[3]);
     } else {
         k = 10;
     }
 
-    sortedTree = newSortedTree(k);
-    tree = readImage(argv[1]);
+    input = FAIRE_image();
+    output = FAIRE_image();
 
-    histogramBegin(tree);
+    image_charger(input, argv[1]);
 
-    while(histogramNext(tree)) {
-        sortedTreeAddColor(sortedTree, histogramCurrentColor(tree), histogramCurrentIteration(tree));
-    }
+    histogram = readImage(input);
 
-    sortedTreeDisplay(sortedTree);
+    sortedColors = quantification(histogram, k);
 
+    mapping(input, output, sortedColors);
+
+    image_sauvegarder(output, argv[2]);
     end = clock();
 
     printf("\nImage successfully parsed.\n"
            "%d pixels in the image.\n"
-           "%d differents colors in the image.\n", histogramGetNumberOfPixels(tree), histogramGetNumberOfColors(tree));
+           "%d differents colors in the image.\n"
+           "Took %lf seconds\n",
+           histogramGetNumberOfPixels(histogram), histogramGetNumberOfColors(histogram),
+           ((float)(end - start)) / CLOCKS_PER_SEC);
 
+    /* Freeing the memory */
+    DEFAIRE_image(output);
 
-    printf("Took %lf seconds\n", ((float)(end - start)) / CLOCKS_PER_SEC);
-    histogramDelete(tree);
+    DEFAIRE_image(input);
 
-    sortedTreeDelete(sortedTree);
+    histogramDelete(histogram);
+
+    sortedTreeDelete(sortedColors);
 
     return 0;
 }

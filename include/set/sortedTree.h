@@ -43,4 +43,38 @@ void sortedTreeDisplay(SortedTree this);
  */
 int sortedTreeDeleteMinValue(SortedTree this);
 
+/**
+ * Puts the iterator at the beginning.
+ * @param this
+ */
+void sortedTreeBegin(SortedTree this);
+
+/**
+ * Moves the iterator to the next element.
+ * @param this
+ * @return 0 if there's no more elements, 1 otherwise.
+ */
+int sortedTreeNext(SortedTree this);
+
+/**
+ * Gives the current Color of the iterator.
+ * @param this
+ * @return
+ */
+Color sortedTreeCurrentColor(SortedTree this);
+
+/**
+ * Gives the number of iteration of the current color of the iterator.
+ * @param this
+ * @return
+ */
+int sortedTreeCurrentIteration(SortedTree this);
+
+/**
+ *
+ * @param this
+ */
+void sortedTreeDelete(SortedTree this);
+
+
 #endif //TPE_ENSICAEN_2018_SORTEDTREE_H

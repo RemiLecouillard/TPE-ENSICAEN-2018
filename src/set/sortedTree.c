@@ -9,6 +9,7 @@
  */
 
 #include <malloc.h>
+#include <Queue.h>
 #include "set/sortedTree.h"
 
 #define _root this->root
@@ -19,6 +20,9 @@
 #define _k this->k
 #define _nbElements this->nbElements
 #define _minValue this->minValue
+#define _current this->iterator.current
+#define _queue this->iterator.queue
+
 #define IS_MIN_VALUE -1
 
 typedef struct sortedNode *SortedNode;
@@ -30,8 +34,15 @@ struct sortedNode {
     SortedNode right;
 };
 
+
+struct iterator {
+    Queue queue;
+    SortedNode current;
+};
+
 struct sortedTree {
     SortedNode root;
+    struct iterator iterator;
     int k;
     int nbElements;
     int minValue;
@@ -44,6 +55,8 @@ void sortedNodeAdd(SortedNode this, Color color, int iteration);
 int nodeDeleteMinValue(SortedNode this);
 
 void sortedNodeDisplay(SortedNode this);
+
+void sortedNodeAddToQueue(SortedNode this, Queue Queue);
 
 SortedTree newSortedTree(int k) {
     SortedTree this;
@@ -104,6 +117,54 @@ int sortedTreeDeleteMinValue(SortedTree this) {
 
     return min;
 }
+
+
+void sortedTreeBegin(SortedTree this) {
+    if (_queue) {
+        QueueDelete(_queue);
+    }
+    _queue = newQueue();
+    sortedNodeAddToQueue(_root, _queue);
+}
+
+void sortedNodeAddToQueue(SortedNode this, Queue queue) {
+
+    if (!this)
+        return;
+    sortedNodeAddToQueue(_left, queue);
+    QueueAdd(queue, this);
+    sortedNodeAddToQueue(_right, queue);
+
+}
+
+int sortedTreeNext(SortedTree this) {
+    if (!_queue) {
+        return 0;
+    }
+
+    _current = QueuePop(_queue);
+
+    if (!_current) {
+        /* If there's no elements left */
+        return 0;
+    }
+
+    return 1;
+}
+
+Color sortedTreeCurrentColor(SortedTree this) {
+    if (_current)
+        return _current->value;
+    /* Arbitrary color when there's no current element */
+    return createColor(0,0,0);
+}
+
+int sortedTreeCurrentIteration(SortedTree this) {
+    if (_current)
+        return _current->iteration;
+    return 0;
+}
+
 
 int nodeDeleteMinValue(SortedNode this) {
     int min;
