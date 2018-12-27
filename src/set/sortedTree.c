@@ -117,6 +117,12 @@ void sortedNodeDisplay(SortedNode this);
  */
 void sortedNodeAddToQueue(SortedNode this, Queue Queue);
 
+/**
+ *
+ * @param this
+ */
+void sortedNodeDelete(SortedNode this);
+
 SortedTree newSortedTree(int k) {
     SortedTree this;
 
@@ -247,7 +253,16 @@ int nodeDeleteMinValue(SortedNode this) {
 }
 
 void sortedTreeDelete(SortedTree this) {
+    sortedNodeDelete(_root);
+    free(this);
+}
 
+void sortedNodeDelete(SortedNode this) {
+    if (!this)
+        return;
+    sortedNodeDelete(_left);
+    sortedNodeDelete(_right);
+    free(this);
 }
 
 SortedNode newSortedNode(Color color, int iteration) {
