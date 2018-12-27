@@ -17,6 +17,12 @@
  * under the License.
 */
 
+/**
+ * @file sortedTree.c
+ * @author Rémi Lecouillard
+ * @author Nicolas Weber
+ */
+
 #include <malloc.h>
 #include <Queue.h>
 #include "set/sortedTree.h"
@@ -34,8 +40,14 @@
 
 #define IS_MIN_VALUE -1
 
+/**
+ * A pointer of a sortedNode.
+ */
 typedef struct sortedNode *SortedNode;
 
+/**
+ * A node of the SortedTree.
+ */
 struct sortedNode {
     int iteration;
     Color value;
@@ -43,28 +55,66 @@ struct sortedNode {
     SortedNode right;
 };
 
-
+/**
+ * An iterator to browse the tree.
+ */
 struct iterator {
     Queue queue;
     SortedNode current;
 };
 
+/**
+ * A binary tree of colors, sorted by their number of iteration.
+ * With a maximum number of colors in it.
+ * Keeps only the most common colors.
+ */
 struct sortedTree {
+    /** the root node */
     SortedNode root;
+    /** the iterator */
     struct iterator iterator;
+    /** the max number of elements */
     int k;
+    /** the number of elements in the tree. */
     int nbElements;
+    /** the min value of iteration */
     int minValue;
 };
 
+/**
+ * Creates a new SortedNode on the heap.
+ * @param color
+ * @param iteration
+ * @return
+ */
 SortedNode newSortedNode(Color color, int iteration);
 
+/**
+ *
+ * @param this
+ * @param color
+ * @param iteration
+ */
 void sortedNodeAdd(SortedNode this, Color color, int iteration);
 
+/**
+ *
+ * @param this
+ * @return
+ */
 int nodeDeleteMinValue(SortedNode this);
 
+/**
+ *
+ * @param this
+ */
 void sortedNodeDisplay(SortedNode this);
 
+/**
+ *
+ * @param this
+ * @param Queue
+ */
 void sortedNodeAddToQueue(SortedNode this, Queue Queue);
 
 SortedTree newSortedTree(int k) {

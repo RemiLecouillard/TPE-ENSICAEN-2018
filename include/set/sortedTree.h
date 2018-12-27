@@ -17,22 +17,34 @@
  * under the License.
 */
 
+/**
+ * @file sortedTree.h
+ * @author Rémi Lecouillard
+ * @author Nicolas Weber
+ */
+
 #ifndef TPE_ENSICAEN_2018_SORTEDTREE_H
 #define TPE_ENSICAEN_2018_SORTEDTREE_H
 
 #include <core/color.h>
 
+/**
+ * A set of colors sorted by their number of iteration with a max number of colors.
+ * A binary tree is used to sort them.
+ * It's always a a pointer.
+ */
 typedef struct sortedTree *SortedTree;
 
 /**
- *
- * @param k
+ * Creates a new SortedTree on the heap.
+ * @param k the max number of colors in this set.
  * @return
  */
 SortedTree newSortedTree(int k);
 
 /**
- *
+ * Adds a color to the tree. The color will be added only if the number of iteration is higher than the min value of iteration.
+ * Or if the number of elements is less than the max number of elements.
  * @param this
  * @param color
  * @param iteration
@@ -40,13 +52,13 @@ SortedTree newSortedTree(int k);
 void sortedTreeAddColor(SortedTree this, Color color, int iteration);
 
 /**
- *
+ * Displays the colors by numerical order of their iterations.
  * @param this
  */
 void sortedTreeDisplay(SortedTree this);
 
 /**
- *
+ * Removes the min value of iteration of the tree.
  * @param this
  * @return
  */
@@ -80,7 +92,7 @@ Color sortedTreeCurrentColor(SortedTree this);
 int sortedTreeCurrentIteration(SortedTree this);
 
 /**
- *
+ * Free the tree from the memory.
  * @param this
  */
 void sortedTreeDelete(SortedTree this);

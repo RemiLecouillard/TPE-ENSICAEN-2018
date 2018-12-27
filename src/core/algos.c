@@ -17,6 +17,11 @@
  * under the License.
 */
 
+/**
+ * @file algos.c
+ * @author Rémi Lecouillard
+ * @author Nicolas Weber
+ */
 
 #include <image/image.h>
 #include "core/algos.h"

@@ -17,6 +17,12 @@
  * under the License.
 */
 
+/**
+ * @file color.c
+ * @author Rémi Lecouillard
+ * @author Nicolas Weber
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "core/color.h"
@@ -38,7 +44,7 @@ Color* newColor(unsigned char r, unsigned char g, unsigned char b) {
     return c;
 }
 
-int colorEquales(Color *c1, Color *c2) {
+int colorEquals(Color *c1, Color *c2) {
     Color *a, *b;
     a = c1;
     b = c2;

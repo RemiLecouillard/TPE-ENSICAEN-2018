@@ -17,6 +17,12 @@
  * under the License.
 */
 
+/**
+ * @file mapping.c
+ * @author Rémi Lecouillard
+ * @author Nicolas Weber
+ */
+
 #include <set/histogram.h>
 #include <util.h>
 #include <core/algos.h>

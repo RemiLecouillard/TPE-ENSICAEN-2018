@@ -17,18 +17,25 @@
  * under the License.
 */
 
+/**
+ * @file histogram.h
+ * @author Rémi Lecouillard
+ * @author Nicolas Weber
+ */
+
 #ifndef TPE_ENSICAEN_2018_COLORTREE_H
 #define TPE_ENSICAEN_2018_COLORTREE_H
 
 #include "core/color.h"
 
 /**
- *
+ * A set of colors. Sorted by their RGB code.
+ * It's always a pointer.
  */
 typedef struct histogram *Histogram;
 
 /**
- *
+ * Creates a new Histogram on the heap.
  * @return
  */
 Histogram newHistogram();
@@ -55,7 +62,7 @@ int histogramGetIteration(Histogram this, Color color);
 void histogramDisplay(Histogram this);
 
 /**
- *
+ * Gives the color in the histogram that is the nearest of the parameter's color.
  * @param this
  * @param color
  * @return

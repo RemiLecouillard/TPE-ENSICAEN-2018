@@ -17,6 +17,11 @@
  * under the License.
 */
 
+/**
+ * @file algos.h
+ * @author Rémi Lecouillard
+ * @author Nicolas Weber
+ */
 
 #ifndef TPE_ENSICAEN_2018_ALGOS_H
 #define TPE_ENSICAEN_2018_ALGOS_H
@@ -26,14 +31,14 @@
 #include "image/image.h"
 
 /**
- *
+ * Converts an image to an Histogram
  * @param img
  * @return
  */
 Histogram readImage(image img);
 
 /**
- *
+ * Select the k colors most present in the histogram
  * @param hist
  * @param k number of colors too kepp
  * @return
@@ -41,10 +46,10 @@ Histogram readImage(image img);
 SortedTree quantification(Histogram hist, int k);
 
 /**
- *
+ * Creates the output image with the input image, but only with the selected colors.
  * @param input
  * @param output
- * @param colors
+ * @param colors The only colors of the output image.
  */
 void mapping(image input,image output, SortedTree colors);
 

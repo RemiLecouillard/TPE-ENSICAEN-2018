@@ -17,6 +17,12 @@
  * under the License.
 */
 
+/**
+ * @file histogram.c
+ * @author Rémi Lecouillard
+ * @author Nicolas Weber
+ */
+
 #include "core/color.h"
 #include "set/histogram.h"
 #include <stdio.h>
@@ -171,7 +177,7 @@ Node newNode(Color color) {
 int addColor(Node this, Color color) {
     int r,g,b;
 
-    if (colorEquales(&_color, &color)) {
+    if (colorEquals(&_color, &color)) {
         _iter++;
         return 0;
     } else {
@@ -213,7 +219,7 @@ void histogramDisplay(Histogram this) {
 int nodeIteration(Node this, Color color) {
     int r,g,b;
 
-    if (colorEquales(&_color, &color)) {
+    if (colorEquals(&_color, &color)) {
         return _iter;
     }
 
@@ -231,7 +237,7 @@ int nodeIteration(Node this, Color color) {
 Color nodeNearestColor(Node this, Color color) {
     int r,g,b;
 
-    if (colorEquales(&_color, &color)) {
+    if (colorEquals(&_color, &color)) {
         return _color;
     }
 
